@@ -4,7 +4,7 @@
 
 int isPrime(int a){
     int curr=2;
-    if(a<=1)return 0;
+    if(a<1)return 0;
 
     while (curr<=(int)sqrt(a)+1)
     {
