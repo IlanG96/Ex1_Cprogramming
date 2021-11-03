@@ -16,10 +16,9 @@ maindrec:main.o libclassrec.so
 main.o:main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c -lm
 
-loops: libclassloops.a
-recursives: libclassrec.a
-recursived: libclassrec.so
-loopd: libclassloops.so
+
+
+
 
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	$(CC) $(FLAGS)  -c advancedClassificationRecursion.c 
@@ -28,15 +27,19 @@ advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
 basicClassification.o: basicClassification.c NumClass.h
 	$(CC) $(FLAGS) -c basicClassification.c -lm 
 #create the static folder of the finctions with loops
+loops: libclassloops.a
 libclassloops.a: main.o advancedClassificationLoop.o basicClassification.o 
 	$(CL) libclassloops.a advancedClassificationLoop.o basicClassification.o
 #create the static folder of the function with recursion and basic
+recursives: libclassrec.a 
 libclassrec.a: main.o advancedClassificationRecursion.o basicClassification.o 
 	 $(CL) libclassrec.a advancedClassificationRecursion.o basicClassification.o 
 #create a dinamic folder with the recursion functions and basic
+recursived: libclassrec.so
 libclassrec.so: advancedClassificationRecursion.o basicClassification.o NumClass.h main.o
 	$(CC) -shared -o libclassrec.so advancedClassificationRecursion.o basicClassification.o 
-#create a dinamic folder with loops functions and basic 
+#create a dinamic folder with loops functions and basic
+loopd: libclassloops.so 
 libclassloops.so:advancedClassificationLoop.o basicClassification.o NumClass.h main.o
 	$(CC) -shared -o libclassloops.so advancedClassificationLoop.o basicClassification.o 
 
