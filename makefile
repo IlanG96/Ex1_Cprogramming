@@ -8,12 +8,19 @@ all:libclassloops.so libclassrec.so libclassrec.a libclassloops.a maindrec maind
 
 mains:main.o libclassrec.a
 		$(CC) $(FLAGS) -o mains $(OBJECTS_MAIN) libclassrec.a -lm
+#dinamic lib need ./ so the lib start without ./ error cannot open shared object file: No such file or directory.
 maindloop:main.o libclassloops.so
-		$(CC) $(FLAGS) -o maindloop $(OBJECTS_MAIN) libclassloops.so -lm
-maindrec:main.o libclassrecg.so
-		$(CC) $(FLAGS) -o maindrec $(OBJECTS_MAIN) libclassrec.so -lm 
+		$(CC) $(FLAGS) -o maindloop $(OBJECTS_MAIN) ./libclassloops.so -lm 
+maindrec:main.o libclassrec.so
+		$(CC) $(FLAGS) -o maindrec $(OBJECTS_MAIN) ./libclassrec.so -lm 
 main.o:main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c -lm
+
+loops: libclassloops.a
+recursives: libclassrec.a
+recursived: libclassrec.so
+loopd: libclassloops.so
+
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	$(CC) $(FLAGS)  -c advancedClassificationRecursion.c 
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
@@ -25,7 +32,7 @@ libclassloops.a: main.o advancedClassificationLoop.o basicClassification.o
 	$(CL) libclassloops.a advancedClassificationLoop.o basicClassification.o
 #create the static folder of the function with recursion and basic
 libclassrec.a: main.o advancedClassificationRecursion.o basicClassification.o 
-	 $(AR) libclassrec.a advancedClassificationRecursion.o basicClassification.o 
+	 $(CL) libclassrec.a advancedClassificationRecursion.o basicClassification.o 
 #create a dinamic folder with the recursion functions and basic
 libclassrec.so: advancedClassificationRecursion.o basicClassification.o NumClass.h main.o
 	$(CC) -shared -o libclassrec.so advancedClassificationRecursion.o basicClassification.o 
