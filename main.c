@@ -20,9 +20,9 @@ int min(int num1, int num2)
 int main()
 {
     int num1,num2;
-   printf("enter a number: \n");
+  //printf("enter a number: \n");
     scanf("%d",&num1);
-   printf("enter another number: \n");
+   //printf("enter another number: \n");
     scanf("%d",&num2);
     int Min=min(num1,num2);
    int  Max=max(num1,num2);
