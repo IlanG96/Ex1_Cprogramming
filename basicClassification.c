@@ -5,8 +5,9 @@
 int isPrime(int a){
     int curr=2;
     if(a<1)return 0;
-
-    while (curr<=(int)sqrt(a)+1)
+    if(a==1)return 1;
+    
+    while (curr<=(int)sqrt(a))
     {
         if(a%curr==0){return 0;}
 
