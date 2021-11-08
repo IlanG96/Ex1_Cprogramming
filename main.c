@@ -10,7 +10,7 @@ int max(int num1, int num2)
 }
 
 /**
- * Find minimum between two numbers.
+ * Find minimum between two numbers
  */
 int min(int num1, int num2) 
 {
