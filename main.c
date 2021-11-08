@@ -21,9 +21,13 @@ int main()
 {
     int num1,num2;
   //printf("enter a number: \n");
-    scanf("%d",&num1);
+    int check =scanf("%d",&num1);
    //printf("enter another number: \n");
-    scanf("%d",&num2);
+    int check2 = scanf("%d",&num2);
+    if(check2!=1 || check!=1){
+        printf("Error please enter a positive number... Exiting program \n");
+        return 1;
+    }
     int Min=min(num1,num2);
    int  Max=max(num1,num2);
 
